@@ -1,0 +1,8 @@
+{
+    "git.enabled": false,
+    "workbench.colorCustomizations": {
+        "debugConsole.infoForeground": "#ccc",
+        "debugConsole.warningForeground": "#edb",
+        "debugConsole.errorForeground": "#fcc"
+    }
+}
