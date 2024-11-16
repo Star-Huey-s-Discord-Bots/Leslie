@@ -1,7 +1,9 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = $;
 var colorCodes = {
     "&": "&",
     " ": "& ",
-    
     "0": "\x1b[38;2;0;0;0m",
     "1": "\x1b[38;5;21m",
     "2": "\x1b[38;5;42m",
@@ -18,37 +20,29 @@ var colorCodes = {
     "d": "\x1b[38;5;212m",
     "e": "\x1b[38;5;226m",
     "f": "\x1b[38;5;231m",
-
     "r": "\x1b[0m",
     "l": "\x1b[1m",
     "m": "\x1b[9m",
     "n": "\x1b[4m",
-    "o": "\x1b[3m",
-
-    [undefined]: "&"
+    "o": "\x1b[3m"
 };
-
-const $ = (content) => {
-    if (!content instanceof String) {
+function $(content) {
+    if (typeof content != "string") {
         console.log(content);
         return;
     }
-    
     var oldContent = "&r" + content + "&r";
-
     let newContent = "";
     for (let i = 0; i < oldContent.length; ++i) {
         if (oldContent[i] == "&") {
             i += 1;
-            newContent += colorCodes[oldContent[i]];
+            newContent += (oldContent[i] ? colorCodes[oldContent[i]] : "&");
         }
         else {
             newContent += oldContent[i];
         }
     }
-
     console.log(newContent);
     return newContent;
-};
-
-module.exports = $;
+}
+;

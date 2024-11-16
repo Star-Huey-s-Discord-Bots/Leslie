@@ -1,0 +1,13 @@
+{
+  "include": ["src"],
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "CommonJS",
+    "target": "ESNext",
+    "esModuleInterop": true,
+    "downlevelIteration": true,
+    "strict": false,
+    "types": ["node"],
+    "skipLibCheck": true
+  }
+}
