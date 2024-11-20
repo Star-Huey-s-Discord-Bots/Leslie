@@ -203,8 +203,6 @@ client.on(discord_js_1.Events.TypingStart, async (typing) => {
 client.on(discord_js_1.Events.MessageCreate, async (msg) => {
     if (msg.author.bot)
         return;
-    if (msg.content.startsWith(process.env.COMMAND_PREFIX))
-        return;
     let bGuild = client.guilds.cache.get(process.env.BACKSTAGE_GUILD_ID);
     let bCategory = bGuild.channels.cache.get(process.env.BACKSTAGE_CATEGORY_ID);
     let transferTable = JSON.parse(node_fs_1.default.readFileSync("./data/TransferTable.json").toString());
@@ -268,6 +266,8 @@ client.on(discord_js_1.Events.MessageCreate, async (msg) => {
         });
     }
     else if (msg.channel.type == discord_js_1.ChannelType.GuildText) {
+        if (msg.content.startsWith(process.env.COMMAND_PREFIX))
+            return;
         if (!msg.channel.parent)
             return;
         if (msg.channel.parent.id != bCategory.id)

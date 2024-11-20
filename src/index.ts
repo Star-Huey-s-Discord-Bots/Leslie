@@ -259,7 +259,6 @@ client.on(Events.TypingStart, async (typing) => {
 // user send message
 client.on(Events.MessageCreate, async (msg) => {
   if (msg.author.bot) return;
-  if (msg.content.startsWith(process.env.COMMAND_PREFIX)) return;
 
   let bGuild = client.guilds.cache.get(process.env.BACKSTAGE_GUILD_ID);
   let bCategory = bGuild.channels.cache.get(process.env.BACKSTAGE_CATEGORY_ID) as CategoryChannel;
@@ -341,6 +340,7 @@ client.on(Events.MessageCreate, async (msg) => {
     });
   }
   else if (msg.channel.type == ChannelType.GuildText) {
+    if (msg.content.startsWith(process.env.COMMAND_PREFIX)) return;
     if (!msg.channel.parent) return;
     if (msg.channel.parent.id != bCategory.id) return;
 
